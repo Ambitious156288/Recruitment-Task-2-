@@ -1,7 +1,7 @@
 let booksArray = [];
 
-if (localStorage.getItem("booksArray") !== null)
-  booksArray = JSON.parse(localStorage.getItem("booksArray"));
+if (localStorage.getItem("books") !== null)
+  booksArray = JSON.parse(localStorage.getItem("books"));
 
 const addBookToTable = (book) => {
   const row = document.createElement("tr");
@@ -45,7 +45,9 @@ const addBook = () => {
         document.querySelector(".range-value").textContent = e.target.value;
       }
 
-      let bookStateCopy = { ...bookStateCopy, [name]: value };
+      let bookStateCopy = { ...bookState };
+
+      bookStateCopy = { ...bookStateCopy, [name]: value };
 
       bookState = { ...bookStateCopy };
     });
@@ -89,7 +91,7 @@ const addBook = () => {
 
       booksArray = [...booksArray, bookState];
 
-      localStorage.setItem("booksArray", JSON.stringify(booksArray));
+      localStorage.setItem("books", JSON.stringify(booksArray));
 
       addBookToTable(bookState);
 
